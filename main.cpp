@@ -24,10 +24,11 @@ int main() {
     // Create a new bet
     app.post("/api/bets", [](Request &req, Response &res) {
         const auto &body = req.json();
-        res.status(201).json({
+        using namespace J;
+        res.status(201).json(obj({
             "message", "Bet created successfully",
             "bet", body
-        });
+        }));
     });
     
     // Get bet by ID
@@ -43,11 +44,12 @@ int main() {
     app.put("/api/bets/{id}", [](Request &req, Response &res) {
         auto id = req.param("id");
         const auto &body = req.json();
-        res.json({
+        using namespace J;
+        res.json(obj({
             "message", "Bet updated successfully",
             "id", id,
             "bet", body
-        });
+        }));
     });
     
     // Delete bet
