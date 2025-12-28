@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libboost-all-dev \
     libspdlog-dev \
+    libsqlite3-dev \
     wget \
     ca-certificates \
     && update-ca-certificates \
@@ -37,6 +38,7 @@ RUN apt-get update && apt-get install -y \
     libboost-system1.83.0 \
     libboost-thread1.83.0 \
     libboost-filesystem1.83.0 \
+    libsqlite3-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
