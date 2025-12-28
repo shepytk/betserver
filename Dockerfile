@@ -40,6 +40,7 @@ RUN apt-get update && apt-get install -y \
     libboost-thread1.83.0 \
     libboost-filesystem1.83.0 \
     libsqlite3-0 \
+    libfmt9 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
