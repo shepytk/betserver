@@ -22,7 +22,7 @@ int main() {
     });
     
     // Create a new bet
-    app.post("/api/bets", [](auto &req, auto &res) {
+    app.post("/api/bets", [](Request &req, Response &res) {
         const auto &body = req.json();
         res.status(201).json({
             "message", "Bet created successfully",
@@ -31,7 +31,7 @@ int main() {
     });
     
     // Get bet by ID
-    app.get("/api/bets/{id}", [](auto &req, auto &res) {
+    app.get("/api/bets/{id}", [](Request &req, Response &res) {
         auto id = req.param("id");
         res.json({
             "id", id,
@@ -40,7 +40,7 @@ int main() {
     });
     
     // Update bet
-    app.put("/api/bets/{id}", [](auto &req, auto &res) {
+    app.put("/api/bets/{id}", [](Request &req, Response &res) {
         auto id = req.param("id");
         const auto &body = req.json();
         res.json({
@@ -51,7 +51,7 @@ int main() {
     });
     
     // Delete bet
-    app.del("/api/bets/{id}", [](auto &req, auto &res) {
+    app.del("/api/bets/{id}", [](Request &req, Response &res) {
         auto id = req.param("id");
         res.json({
             "message", "Bet deleted successfully",
