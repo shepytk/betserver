@@ -1,64 +1,66 @@
-#include <vix/vix.hpp>
+#include <vix/core.h>
 #include <iostream>
 
 using namespace vix;
+namespace J = vix::json;
 
 int main() {
     App app;
     
     // Simple health check endpoint
-    app.get("/", [](const Request& req, Response& res) {
-        res.json({{"message", "Betserver is running"}, {"status", "ok"}});
+    app.get("/", [](auto &, auto &res) {
+        res.json({"message", "Betserver is running", "status", "ok"});
     });
     
     // Get all bets endpoint
-    app.get("/api/bets", [](const Request& req, Response& res) {
+    app.get("/api/bets", [](auto &, auto &res) {
+        using namespace J;
         res.json({
-            {"bets", json::array()},
-            {"count", 0}
+            "bets", array({}),
+            "count", 0
         });
     });
     
     // Create a new bet
-    app.post("/api/bets", [](const Request& req, Response& res) {
-        auto body = req.json();
+    app.post("/api/bets", [](auto &req, auto &res) {
+        const auto &body = req.json();
         res.status(201).json({
-            {"message", "Bet created successfully"},
-            {"bet", body}
+            "message", "Bet created successfully",
+            "bet", body
         });
     });
     
     // Get bet by ID
-    app.get("/api/bets/:id", [](const Request& req, Response& res) {
-        std::string id = req.params["id"];
+    app.get("/api/bets/{id}", [](auto &req, auto &res) {
+        auto id = req.param("id");
         res.json({
-            {"id", id},
-            {"message", "Bet details"}
+            "id", id,
+            "message", "Bet details"
         });
     });
     
     // Update bet
-    app.put("/api/bets/:id", [](const Request& req, Response& res) {
-        std::string id = req.params["id"];
-        auto body = req.json();
+    app.put("/api/bets/{id}", [](auto &req, auto &res) {
+        auto id = req.param("id");
+        const auto &body = req.json();
         res.json({
-            {"message", "Bet updated successfully"},
-            {"id", id},
-            {"bet", body}
+            "message", "Bet updated successfully",
+            "id", id,
+            "bet", body
         });
     });
     
     // Delete bet
-    app.del("/api/bets/:id", [](const Request& req, Response& res) {
-        std::string id = req.params["id"];
+    app.del("/api/bets/{id}", [](auto &req, auto &res) {
+        auto id = req.param("id");
         res.json({
-            {"message", "Bet deleted successfully"},
-            {"id", id}
+            "message", "Bet deleted successfully",
+            "id", id
         });
     });
     
     std::cout << "Betserver starting on port 8080..." << std::endl;
-    app.listen(8080);
+    app.run(8080);
     
     return 0;
 }

@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
     cmake \
     git \
     libssl-dev \
+    libboost-all-dev \
     wget \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -30,6 +32,9 @@ FROM ubuntu:22.04
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \
     libssl3 \
+    libboost-system1.74.0 \
+    libboost-thread1.74.0 \
+    libboost-filesystem1.74.0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
