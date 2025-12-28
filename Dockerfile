@@ -1,5 +1,5 @@
 # Build stage
-FROM ubuntu:22.04 AS builder
+FROM ubuntu:24.04 AS builder
 
 # Avoid prompts from apt
 ENV DEBIAN_FRONTEND=noninteractive
@@ -29,14 +29,14 @@ RUN mkdir -p build && cd build && \
     make -j$(nproc)
 
 # Runtime stage
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \
-    libssl3 \
-    libboost-system1.74.0 \
-    libboost-thread1.74.0 \
-    libboost-filesystem1.74.0 \
+    libssl3t64 \
+    libboost-system1.83.0 \
+    libboost-thread1.83.0 \
+    libboost-filesystem1.83.0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
