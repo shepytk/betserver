@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     libboost-all-dev \
     libspdlog-dev \
     libsqlite3-dev \
+    nlohmann-json3-dev \
     wget \
     ca-certificates \
     && update-ca-certificates \
