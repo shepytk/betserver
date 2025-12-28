@@ -26,7 +26,7 @@ A simple betting server application built with C++ and vix.cpp framework.
 
 ### For local development:
 - CMake (>= 3.14)
-- C++ compiler with C++17 support (GCC, Clang, or MSVC)
+- C++ compiler with C++20 support (GCC 10+, Clang 10+, or MSVC 2019+)
 - Make
 - Git
 - OpenSSL development libraries
@@ -91,18 +91,6 @@ Install the equivalent packages for your distribution:
 - spdlog development libraries
 - sqlite3 development libraries
 - nlohmann-json development libraries
-
-Then follow the same build steps as above.
-
-## Usage Examples
-
-### Other Linux distributions
-
-Install the equivalent packages for your distribution:
-- build-essential (GCC/G++)
-- cmake
-- git
-- openssl development libraries
 
 Then follow the same build steps as above.
 

@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(FetchContent)
 
 # Fetch vix.cpp from GitHub
+# Note: Using 'main' branch for latest features. For production use,
+# consider pinning to a specific release tag or commit hash for stability.
 FetchContent_Declare(
     vix
     GIT_REPOSITORY https://github.com/vixcpp/vix.git
