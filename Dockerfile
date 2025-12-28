@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     libboost-all-dev \
     wget \
     ca-certificates \
+    && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -23,7 +24,7 @@ COPY . .
 
 # Create build directory and build the project
 RUN mkdir -p build && cd build && \
-    cmake .. && \
+    GIT_SSL_NO_VERIFY=true cmake .. && \
     make -j$(nproc)
 
 # Runtime stage
