@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     git \
     libssl-dev \
     libboost-all-dev \
+    libspdlog-dev \
     wget \
     ca-certificates \
     && update-ca-certificates \
